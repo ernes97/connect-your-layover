@@ -26,7 +26,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -51,6 +52,17 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				flight: {
+					blue: 'hsl(var(--flight-blue))',
+					'blue-light': 'hsl(var(--flight-blue-light))',
+					'blue-dark': 'hsl(var(--flight-blue-dark))'
+				},
+				safety: {
+					green: 'hsl(var(--safety-green))'
+				},
+				warning: {
+					amber: 'hsl(var(--warning-amber))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -84,11 +96,36 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'flight-float': {
+					'0%, 100%': { 
+						transform: 'translateY(0px) rotate(0deg)' 
+					},
+					'50%': { 
+						transform: 'translateY(-10px) rotate(2deg)' 
+					}
+				},
+				'glow-pulse': {
+					'0%, 100%': { 
+						boxShadow: 'var(--shadow-flight)' 
+					},
+					'50%': { 
+						boxShadow: 'var(--glow-primary)' 
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'flight-float': 'flight-float 6s ease-in-out infinite',
+				'glow-pulse': 'glow-pulse 3s ease-in-out infinite'
+			},
+			backgroundImage: {
+				'sky-gradient': 'var(--sky-gradient)'
+			},
+			boxShadow: {
+				'flight': 'var(--shadow-flight)',
+				'card-flight': 'var(--shadow-card)'
 			}
 		}
 	},
