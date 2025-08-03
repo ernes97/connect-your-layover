@@ -1,21 +1,29 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CalendarDays, MapPin, Plane, Search, Shield } from "lucide-react";
+import { TravelCodeForm } from "./TravelCodeForm";
 
 const FlightSearch = () => {
-  const [flightData, setFlightData] = useState({
-    flightNumber: "",
-    departure: "",
-    arrival: "",
-    date: ""
-  });
+  const [showFullForm, setShowFullForm] = useState(false);
+  const navigate = useNavigate();
 
-  const handleInputChange = (field: string, value: string) => {
-    setFlightData(prev => ({ ...prev, [field]: value }));
+  const handleSuccess = () => {
+    navigate('/dashboard');
   };
+
+  if (showFullForm) {
+    return (
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <TravelCodeForm onSuccess={handleSuccess} />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 bg-background">
@@ -25,97 +33,55 @@ const FlightSearch = () => {
             Encontre Sua Conexão
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Insira seus dados de voo e descubra quem está voando com você
+            Conecte-se com outros viajantes durante sua escala
           </p>
         </div>
 
-        <Card className="max-w-4xl mx-auto shadow-card-flight border-0">
+        <Card className="max-w-2xl mx-auto shadow-card-flight border-0">
           <CardHeader className="bg-gradient-to-r from-flight-blue to-flight-blue-light text-white rounded-t-lg">
             <CardTitle className="flex items-center gap-2 text-xl">
               <Plane className="h-6 w-6" />
-              Seus Dados de Voo
+              Layover Connect
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="flightNumber" className="text-flight-blue-dark font-medium">
-                    Número do Voo
-                  </Label>
-                  <Input
-                    id="flightNumber"
-                    placeholder="Ex: TAM3054"
-                    value={flightData.flightNumber}
-                    onChange={(e) => handleInputChange("flightNumber", e.target.value)}
-                    className="mt-2"
-                  />
-                </div>
+          <CardContent className="p-8 text-center">
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-2xl font-bold text-flight-blue-dark mb-2">
+                  Conecte-se Durante Sua Escala
+                </h3>
+                <p className="text-muted-foreground">
+                  Encontre outros viajantes no mesmo aeroporto durante sua escala. 
+                  Faça novos amigos, pratique idiomas ou simplesmente tenha uma boa conversa.
+                </p>
+              </div>
 
-                <div>
-                  <Label htmlFor="departure" className="text-flight-blue-dark font-medium">
-                    Aeroporto de Partida
-                  </Label>
-                  <div className="relative mt-2">
-                    <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      id="departure"
-                      placeholder="Ex: GRU - São Paulo"
-                      value={flightData.departure}
-                      onChange={(e) => handleInputChange("departure", e.target.value)}
-                      className="pl-10"
-                    />
-                  </div>
+              <div className="bg-accent rounded-lg p-6">
+                <h4 className="font-semibold mb-3">Como Funciona:</h4>
+                <div className="space-y-2 text-sm text-left">
+                  <p>• Insira seus dados de voo e escala</p>
+                  <p>• Encontre automaticamente outros viajantes na mesma escala</p>
+                  <p>• Converse de forma privada ou em grupos públicos</p>
+                  <p>• Todos os chats são apagados 1 hora após o voo</p>
+                  <p>• Seus dados pessoais permanecem privados</p>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="arrival" className="text-flight-blue-dark font-medium">
-                    Aeroporto de Destino
-                  </Label>
-                  <div className="relative mt-2">
-                    <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      id="arrival"
-                      placeholder="Ex: JFK - Nova York"
-                      value={flightData.arrival}
-                      onChange={(e) => handleInputChange("arrival", e.target.value)}
-                      className="pl-10"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="date" className="text-flight-blue-dark font-medium">
-                    Data do Voo
-                  </Label>
-                  <div className="relative mt-2">
-                    <CalendarDays className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      id="date"
-                      type="date"
-                      value={flightData.date}
-                      onChange={(e) => handleInputChange("date", e.target.value)}
-                      className="pl-10"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 text-center">
-              <Button variant="flight" size="lg" className="px-12 py-6 text-lg">
+              <Button 
+                onClick={() => setShowFullForm(true)}
+                size="lg" 
+                className="px-12 py-6 text-lg bg-flight-blue hover:bg-flight-blue-dark"
+              >
                 <Search className="h-5 w-5 mr-2" />
-                Buscar Conexões
+                Começar a Conectar
               </Button>
-            </div>
 
-            <div className="mt-6 p-4 bg-accent rounded-lg">
-              <p className="text-sm text-accent-foreground text-center">
-                <Shield className="inline h-4 w-4 mr-1 text-safety-green" />
-                Seus dados são protegidos e só serão compartilhados com usuários verificados
-              </p>
+              <div className="p-4 bg-accent rounded-lg">
+                <p className="text-sm text-accent-foreground">
+                  <Shield className="inline h-4 w-4 mr-1 text-safety-green" />
+                  Seus dados são protegidos e apenas informações básicas são compartilhadas
+                </p>
+              </div>
             </div>
           </CardContent>
         </Card>
