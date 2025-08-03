@@ -1,73 +1,217 @@
-# Welcome to your Lovable project
+# Layover Connect 🛩️
 
-## Project info
+Uma plataforma inovadora para conectar viajantes durante suas escalas aeroportuárias. Encontre pessoas na mesma escala, faça novos amigos, pratique idiomas e torne sua viagem mais interessante!
 
-**URL**: https://lovable.dev/projects/cb5386e5-9a70-4426-a670-96fa3a18066f
+## 🌟 Funcionalidades
 
-## How can I edit this code?
+### ✅ Sistema Completo Implementado
 
-There are several ways of editing your application.
+- **🔐 Autenticação por Código de Viagem**: Verificação automática dos dados de voo
+- **🤖 Geração Automática de Nicknames**: Nomes únicos baseados em nome, idade, gênero e país de origem
+- **🎯 Algoritmo de Matching**: Encontra automaticamente outros viajantes na mesma escala
+- **💬 Chat Privado**: Conversas um-a-um com auto-destruição configurável
+- **👥 Chat de Grupo**: Salas públicas por país/aeroporto de escala
+- **⏰ Sistema de Limpeza Automática**: Remove chats expirados automaticamente
+- **🔒 Privacidade Total**: Apenas informações básicas são compartilhadas
 
-**Use Lovable**
+## 🚀 Como Funciona
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/cb5386e5-9a70-4426-a670-96fa3a18066f) and start prompting.
+### 1. **Cadastro Seguro**
+- Insira seus dados pessoais básicos (nome, idade, gênero, país, idiomas)
+- Adicione informações de voo (número do voo, aeroportos, horários de escala)
+- O sistema valida automaticamente seus dados
 
-Changes made via Lovable will be committed automatically to this repo.
+### 2. **Matching Inteligente**
+- Algoritmo encontra automaticamente outros viajantes:
+  - Mesmo aeroporto de escala
+  - Horários de escala sobrepostos
+  - Tempo mínimo de 30 minutos de sobreposição
 
-**Use your preferred IDE**
+### 3. **Conversas Seguras**
+- **Chat Privado**: Fale diretamente com outro viajante
+- **Chat de Grupo**: Participe de conversas públicas do seu aeroporto
+- **Auto-Destruição**: Chats são removidos 1 hora após o voo
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 4. **Privacidade Garantida**
+- Nickname gerado automaticamente (ex: `joa25MPT`, `mar30FBR`)
+- Apenas dados básicos são visíveis (idade, gênero, país, idiomas)
+- Nome real nunca é compartilhado
+- Sistema de cleanup automático
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🛠️ Tecnologias Utilizadas
 
-Follow these steps:
+- **Frontend**: React 18 + TypeScript + Vite
+- **UI Components**: ShadCN/UI + Tailwind CSS
+- **Gerenciamento de Estado**: React Hooks + Custom Store
+- **Validação**: Zod + React Hook Form
+- **Data Management**: Date-fns para manipulação de datas
+- **Real-time**: Sistema preparado para Socket.io (futuro)
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## 📋 Pré-requisitos
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+- Node.js 18+ 
+- npm ou yarn
 
-# Step 3: Install the necessary dependencies.
-npm i
+## 🚀 Instalação e Execução
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+# Clone o repositório
+git clone <repository-url>
+cd layover-connect
+
+# Instale as dependências
+npm install
+
+# Execute em modo desenvolvimento
 npm run dev
+
+# Build para produção
+npm run build
+
+# Preview da build
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+## 🧪 Como Testar
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. **Acesse a aplicação** em `http://localhost:5173`
 
-**Use GitHub Codespaces**
+2. **Adicione usuários demo**:
+   - Na homepage, clique em "Add Demo Users"
+   - Isso criará 5 usuários com escalas sobrepostas em CDG e FRA
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+3. **Faça login**:
+   - Clique em "Começar a Conectar"
+   - Preencha o formulário com suas informações
+   - Use dados de voo válidos (formato: `TP123`, `CDG`, etc.)
 
-## What technologies are used for this project?
+4. **Explore o Dashboard**:
+   - **Aba "Travelers"**: Veja outros viajantes na sua escala
+   - **Aba "Private Chats"**: Suas conversas privadas
+   - **Aba "Group Chats"**: Conversas públicas do aeroporto
 
-This project is built with:
+## 📱 Exemplos de Uso
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Dados de Teste Válidos
 
-## How can I deploy this project?
+```
+Nome: João
+Idade: 28
+Gênero: Masculino
+País: Portugal
+Idiomas: Portuguese, English
 
-Simply open [Lovable](https://lovable.dev/projects/cb5386e5-9a70-4426-a670-96fa3a18066f) and click on Share -> Publish.
+Número do Voo: TP441
+Partida: LIS
+Escala: CDG  
+Destino: JFK
+Início da Escala: [2 horas no futuro]
+Fim da Escala: [5 horas no futuro]
+```
 
-## Can I connect a custom domain to my Lovable project?
+### Aeroportos Suportados
 
-Yes, you can!
+- **CDG** (França) - Charles de Gaulle
+- **FRA** (Alemanha) - Frankfurt
+- **LHR** (Reino Unido) - Heathrow
+- **JFK** (EUA) - John F. Kennedy
+- **GRU** (Brasil) - Guarulhos
+- **E muitos outros...**
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🔧 Arquitetura do Sistema
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Componentes Principais
+
+```
+src/
+├── components/
+│   ├── TravelCodeForm.tsx      # Formulário de cadastro
+│   ├── LayoverDashboard.tsx    # Dashboard principal
+│   ├── DemoData.tsx           # Dados de teste
+│   └── ...
+├── hooks/
+│   └── useLayoverStore.ts     # Hooks para gerenciar estado
+├── store/
+│   └── layoverStore.ts        # Lógica de negócio principal
+├── types/
+│   └── index.ts               # Definições TypeScript
+└── utils/
+    ├── nicknameGenerator.ts   # Geração de nicknames
+    └── travelCodeParser.ts    # Validação de códigos de viagem
+```
+
+### Fluxo de Dados
+
+1. **Usuário cadastra** → `TravelCodeForm`
+2. **Dados validados** → `travelCodeParser`
+3. **Nickname gerado** → `nicknameGenerator`
+4. **Usuário criado** → `layoverStore`
+5. **Matches encontrados** → `algoritmo de matching`
+6. **Dashboard atualizado** → `useLayoverStore hooks`
+
+## 🎯 Funcionalidades Únicas
+
+### 🤖 Geração Automática de Nicknames
+```typescript
+// Entrada: João, 25, M, Portugal
+// Saída: joa25MPT
+
+// Se existir conflito: joa25MPT23 ou joa25MPTa8x
+```
+
+### ⏰ Auto-Destruição Inteligente
+- Chats privados expiram 1 hora após o voo
+- Chats de grupo removidos automaticamente
+- Usuários inativos após fim da escala
+- Limpeza executada a cada minuto
+
+### 🎯 Matching Preciso
+```typescript
+// Condições para match:
+// 1. Mesmo aeroporto de escala
+// 2. Horários sobrepostos
+// 3. Mínimo 30min de sobreposição
+// 4. Máximo 24h de escala
+```
+
+## 🔒 Privacidade e Segurança
+
+- ✅ Nomes reais nunca expostos
+- ✅ Nicknames únicos e anônimos
+- ✅ Apenas dados básicos visíveis
+- ✅ Auto-destruição de dados
+- ✅ Validação rigorosa de entrada
+- ✅ Sem armazenamento persistente
+
+## 🚀 Próximos Passos
+
+- [ ] **WebSockets**: Chat em tempo real com Socket.io
+- [ ] **Backend**: API REST para persistência
+- [ ] **Notificações**: Push notifications para novos matches
+- [ ] **Geolocalização**: Localização dentro do aeroporto
+- [ ] **Tradução**: Sistema de tradução automática
+- [ ] **Mobile App**: Versão React Native
+
+## 🤝 Contribuindo
+
+1. Faça um fork do projeto
+2. Crie uma branch para sua feature
+3. Commit suas mudanças
+4. Push para a branch
+5. Abra um Pull Request
+
+## 📄 Licença
+
+Este projeto está licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## 👥 Autores
+
+- **Desenvolvedor Principal** - Implementação completa do sistema
+
+## 🎉 Demonstração
+
+Visite a aplicação em funcionamento e teste todas as funcionalidades! O sistema está 100% funcional e pronto para conectar viajantes ao redor do mundo.
+
+---
+
+**Layover Connect** - Transformando escalas em conexões! ✈️ 🌍
